@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: asia-south1-docker.pkg.dev/project-eefd8d29-a5e4-42f7-964/task-repo/task-frontend:0012988e89adc307e605e6ad04f0fdc09fe151bd
+          image: asia-south1-docker.pkg.dev/project-eefd8d29-a5e4-42f7-964/task-repo/task-frontend:06f120c7be869cda0d0b8e73ec5f24f9d579d5b3
           ports:
             - containerPort: 80
