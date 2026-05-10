@@ -1,4 +1,3 @@
-@"
 name: Build and Deploy to GKE
 
 on:
@@ -20,32 +19,31 @@ jobs:
       - name: Google Auth (Workload Identity)
         uses: google-github-actions/auth@v2
         with:
-          workload_identity_provider: 'projects/752687754332/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
-          service_account: 'github-actions-sa@project-eefd8d29-a5e4-42f7-964.iam.gserviceaccount.com'
+          workload_identity_provider: "projects/752687754332/locations/global/workloadIdentityPools/github-pool/providers/github-provider"
+          service_account: "github-actions-sa@project-eefd8d29-a5e4-42f7-964.iam.gserviceaccount.com"
 
       - name: Configure Docker for Artifact Registry
         run: gcloud auth configure-docker asia-south1-docker.pkg.dev --quiet
 
       - name: Build and Push Frontend
         run: |
-          docker build -t asia-south1-docker.pkg.dev/project-eefd8d29-a5e4-42f7-964/task-repo/task-frontend:${{ github.sha }} -f frontend/Dockerfile frontend/
-          docker push asia-south1-docker.pkg.dev/project-eefd8d29-a5e4-42f7-964/task-repo/task-frontend:${{ github.sha }}
+          docker build -t asia-south1-docker.pkg.dev/project-eefd8d29-a5e4-42f7-964/task-repo/task-frontend:$GITHUB_SHA -f frontend/Dockerfile frontend/
+          docker push asia-south1-docker.pkg.dev/project-eefd8d29-a5e4-42f7-964/task-repo/task-frontend:$GITHUB_SHA
 
       - name: Build and Push Backend
         run: |
-          docker build -t asia-south1-docker.pkg.dev/project-eefd8d29-a5e4-42f7-964/task-repo/task-backend:${{ github.sha }} -f backend/Dockerfile backend/
-          docker push asia-south1-docker.pkg.dev/project-eefd8d29-a5e4-42f7-964/task-repo/task-backend:${{ github.sha }}
+          docker build -t asia-south1-docker.pkg.dev/project-eefd8d29-a5e4-42f7-964/task-repo/task-backend:$GITHUB_SHA -f backend/Dockerfile backend/
+          docker push asia-south1-docker.pkg.dev/project-eefd8d29-a5e4-42f7-964/task-repo/task-backend:$GITHUB_SHA
 
       - name: Update Image Tags in YAML
         run: |
-          sed -i 's|task-frontend:.*|task-frontend:${{ github.sha }}|g' frontend-deployment.yaml
-          sed -i 's|task-backend:.*|task-backend:${{ github.sha }}|g' backend-deployment.yaml
+          sed -i "s|task-frontend:.*|task-frontend:$GITHUB_SHA|g" frontend-deployment.yaml
+          sed -i "s|task-backend:.*|task-backend:$GITHUB_SHA|g" backend-deployment.yaml
 
       - name: Commit and Push updated YAMLs
         run: |
-          git config user.email 'github-actions@github.com'
-          git config user.name 'GitHub Actions'
+          git config user.email "github-actions@github.com"
+          git config user.name "GitHub Actions"
           git add frontend-deployment.yaml backend-deployment.yaml
-          git commit -m 'ci: update image tags to ${{ github.sha }}'
+          git commit -m "ci: update image tags to $GITHUB_SHA"
           git push
-"@ | Out-File -FilePath D:\Dev\task-manager\.github\workflows\deploy.yml -Encoding utf8
