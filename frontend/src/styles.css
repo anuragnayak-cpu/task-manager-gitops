@@ -1,23 +1,44 @@
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #e8f4f8;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: #f1f1f1;
   margin: 0;
   padding: 0;
+  min-height: 100vh;
+}
+
+body::before {
+  content: "DEPLOYED VERSION: v2 (ArgoCD Sync Test)";
+  display: block;
+  background-color: #ff9800;
+  color: #000;
+  text-align: center;
+  font-weight: bold;
+  padding: 8px;
+  letter-spacing: 1px;
 }
 
 h1, h2 {
-  color: #1a73e8;
+  color: #ffd54f;
+  text-align: center;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 button {
-  background-color: #1a73e8;
+  background-color: #ff5722;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
+  padding: 12px 28px;
+  border-radius: 30px;
   cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
 }
 
 button:hover {
-  background-color: #1557b0;
+  background-color: #e64a19;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
 }
