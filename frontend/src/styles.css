@@ -1,44 +1,37 @@
 body {
-  font-family: 'Poppins', 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-  color: #f1f1f1;
+  font-family: 'Comic Sans MS', cursive;
+  background-color: #ff00ff;
+  color: #00ff00;
   margin: 0;
   padding: 0;
-  min-height: 100vh;
 }
 
 body::before {
-  content: "DEPLOYED VERSION: v2 (ArgoCD Sync Test)";
+  content: "BROKEN VERSION v3 - HORRIBLE COLORS!";
   display: block;
-  background-color: #ff9800;
-  color: #000;
+  background-color: #ff0000;
+  color: #ffff00;
   text-align: center;
+  font-size: 24px;
   font-weight: bold;
-  padding: 8px;
-  letter-spacing: 1px;
+  padding: 20px;
+  animation: blink 0.5s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
 }
 
 h1, h2 {
-  color: #ffd54f;
-  text-align: center;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  color: #ff00ff;
+  text-decoration: underline wavy red;
 }
 
 button {
-  background-color: #ff5722;
-  color: white;
-  border: none;
-  padding: 12px 28px;
-  border-radius: 30px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 600;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-}
-
-button:hover {
-  background-color: #e64a19;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+  background-color: #00ff00;
+  color: #ff00ff;
+  border: 5px dashed #ff0000;
+  padding: 5px;
+  font-family: 'Comic Sans MS';
+  transform: rotate(5deg);
 }
